@@ -65,4 +65,4 @@ ls -l /mnt/shared
 kubectl logs -f demo -c sidecar-container
 ```
 # Outcome:
-![Web Result](Result.png)
+![Logs Result](Result.png)
