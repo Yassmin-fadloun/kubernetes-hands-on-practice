@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+spec:
+  volumes:
+    - name: emptydir_volume
+      emptyDir: {}
+    - name: nfs_volume
+      nfs:
+        server: 172.17.0.1
+        path: /mnt/shared
+  containers:
+    - name: main
+      image: nginx:alpine
+      volumeMounts:
+        - name: emptydir_volume
+          mountPath: /usr/share/nginx/html
+        - name: nfs_volume
+          mountPath: /mnt/nfs
+      ports:
+        - containerPort: 80
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 30
+        periodSeconds: 10
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "250m"
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+    - name: sidecar-container
+      image: busybox
+      command: ["/bin/sh", "-c", "while true; do echo $(date) 'sidecar logging'; sleep 5; done"]
+      volumeMounts:
+        - name: emptydir_volume
+          mountPath: /mnt/shared
+      resources:
+        requests:
+          memory: "16Mi"
+          cpu: "110m"
+        limits:
+          memory: "32Mi"
+          cpu: "200m"
