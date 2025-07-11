@@ -5,7 +5,7 @@
 Create 4 Pods each with specific labels and then filter and view them using `kubectl` commands.
 
 ## Steps and Commands
-### 1. Create labeled pods from a [labels.yml](.labels.yml)
+### 1. Create labeled pods from a [labels.yml](./labels.yml)
 ```bash
 nano labels.yml
 ```
