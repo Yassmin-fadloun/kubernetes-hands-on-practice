@@ -14,21 +14,19 @@ nano labels.yml
 ```bash
 kubectl apply -f labels.yml
 ```
-![Logs Result](Result.png)
-
 ### 3. Show all labels for all pods
 
 ```bash
 kubectl get pods --show-labels
 ```
-![Logs Result](Result.png)
+![Logs Result](lab.png)
 ### 4. Display specific label column (component)
 ```bash
 kubectl get pods -L app.kubernetes.io/component
 ```
-![Logs Result](Result.png)
+![Logs Result](comp.png)
 ### 2. Filter pods by label selector
 ```bash
 kubectl get pods --selector="app.kubernetes.io/component=service"
 ```
-![Logs Result](Result.png)
+![Logs Result](selector.png)
