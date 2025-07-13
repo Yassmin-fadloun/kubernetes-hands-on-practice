@@ -24,10 +24,13 @@ nano pods.yaml
 ```bash
 kubectl apply -f pod.yml
 ```
+![Logs Result](applypods.png)
+
 ### 3.  Verify the Pod is Running
 ```bash
 kubectl get pods
 ```
+![Logs Result](getpods.png)
 ### 4. Modify index.html in each pod to display unique identity
 ```bash
 kubectl exec -it web-app01 -- bash
@@ -50,9 +53,13 @@ nano clusterip-service.yaml
 ### 6. Apply and verify:
 ```bash
 kubectl apply -f clusterip-service.yaml
+```
+![Logs Result](applycluster.png)
+
+```bash
 kubectl get svc
 ```
-![Logs Result](Result.png)
+![Logs Result](getsvc.png)
 ### 7. Test using a third Ubuntu pod
 ```bash
 kubectl run ubuntu --image=ubuntu -it --rm -- /bin/bash
@@ -62,12 +69,13 @@ curl my-clusterip-service.default.svc.cluster.local
 curl my-clusterip-service
 exit
 ```
-![Logs Result](Result.png)
+![Logs Result](app01.png)
+![Logs Result](app02.png)
 ### 8. Port-forward the service
 ```bash
 kubectl port-forward service/my-clusterip-service 8080:80
 ```
-![Logs Result](Result.png)
+![Logs Result](portforward.png)
 ### 9. Create NodePort service [nodeport-service.yaml](./nodeport-service.yaml)
 ```bash
 nano nodeport-service.yaml
@@ -77,4 +85,4 @@ nano nodeport-service.yaml
 kubectl apply -f nodeport-service.yaml
 kubectl get svc
 ```
-![Logs Result](Result.png)
+![Logs Result](applynodeport.png)
